@@ -16,7 +16,7 @@ $html_tables = create_html_tables($table_array,$selection=$query);
         <style type="text/css">
             @import "css/jquery.dataTables.css";
         </style>        
-        <center><h2>SOP Builder Result</h2></center>
+        <center><h2>SOP Builder Result</h2></center>       
          <div class="form_div" style="padding-bottom: 20px;">   
              <table>
                 <tr><td><b>Version:</b></td><td><?=$_POST['xml_path']?></td></tr>
@@ -25,6 +25,15 @@ $html_tables = create_html_tables($table_array,$selection=$query);
              </table>
              
         </div>
+        <div class="btn_div">
+            <table>
+                <tr>
+                    <td><div id="submit" class="btn light-grey">Create PDF Document</div></td>
+                    <td><div id="submit" class="btn light-grey">Create XML Merger File</div></td>
+                </tr>
+            </table>
+        </div>
+        
         <?=$html_tables?>
         
     </body>
