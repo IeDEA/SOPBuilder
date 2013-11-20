@@ -89,4 +89,26 @@ function create_html_tables($table_array,$selection=false){
     
 }
 
+function create_filtered_table_array($table_array,$selection){
+    $selected = array();
+    foreach($selection as $tableIvar){
+        $tmp = explode('/',$tableIvar);
+        $selected[$tmp[0]][] = $tmp[1];
+    }
+    $selected_table_array = array();
+    foreach($selected as $table_name => $variables){
+        if($variables[0]=="*")
+            $selected_table_array[$table_name] = $table_array[$table_name];
+        else{
+            $selected_table_array[$table_name] = array('Table Name' => $table_name, 
+                'Title' => $table_array[$table_name]['Title'],
+                'Description' => $table_array[$table_name]['Description']);
+            foreach($variables as $variable_name){
+                $selected_table_array[$table_name]['Variables'][$variable_name] = $table_array[$table_name]['Variables'][$variable_name];
+            }
+        }
+    }
+    return $selected_table_array;    
+}
+
 ?>
