@@ -266,8 +266,7 @@ Class PDF extends FPDF {
     
     function createSOPtable($table_array){
         $this->SetAligns(array("L", "L", "L", "L","L"));
-        $this->SetWidths(array(35, 90, 10, 45,10));
-        $this->SetFonts(array("Times", "Times", "Times", "Times", "Times"), array("", "", "", "", ""), array(10, 10, 10, 10, 10));
+        $this->SetWidths(array(35, 80, 20, 35,20));       
         
         foreach($table_array as $table_name => $table_data){
             $this->SetFont('Times', 'B', 12);
@@ -276,6 +275,9 @@ Class PDF extends FPDF {
             $this->SetFont('Times', '', 10);
             $this->Write(6, $table_data['Description']);
             $this->Ln(5);
+            $this->SetFonts(array("Times", "Times", "Times", "Times", "Times"), array("B", "B", "B", "B", "B"), array(10, 10, 10, 10, 10));
+            $this->Row(array('Variable','Description','Data Type','Coding','Optional'));
+            $this->SetFonts(array("Times", "Times", "Times", "Times", "Times"), array("", "", "", "", ""), array(10, 10, 10, 10, 10));
             foreach($table_data['Variables'] as $row){
                 $this->Row(array_values($row));
             }
