@@ -28,13 +28,19 @@ $html_tables = create_html_tables($table_array,$selection=$query);
         <div class="btn_div">
             <table>
                 <tr>
-                    <td><div id="submit" class="btn light-grey" onclick="create_file('make_pdf');">Create PDF Document</div></td>
-                    <td><div id="submit" class="btn light-grey">Create XML Merger File</div></td>
+                    <td><div id="submit" class="btn light-grey" onclick="create_file('create_pdf');">Create PDF Document</div></td>
+                    <td><div id="submit" class="btn light-grey" onclick="create_file('create_xml');">Create XML Merger File</div></td>
                 </tr>
             </table>
         </div>
-        <!--Hidden Form-->
-        <form method="POST" action="SOPBuilder-MakePDF.php" id="make_pdf" target="_blank" style="display:none;">
+        <!--Hidden PDF Creator Form-->
+        <form method="POST" action="SOPBuilder-CreatePDF.php" id="create_pdf" target="_blank" style="display:none;">
+            <b>Version:</b> <input id="version" style="width:188px;" name="xml_path" value="<?=$_POST['xml_path']?>"><br><br>  
+            <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria" value="<?=$_POST['criteria']?>"><br><br>   
+            <b>Query:</b> <input style="width:188px;" id="query" name="query" value="<?=$_POST['query']?>"><br><br> 
+        </form>
+        <!--Hidden XML Creator Form-->
+        <form method="POST" action="SOPBuilder-CreateXML.php" id="create_xml" target="_blank" style="display:none;">
             <b>Version:</b> <input id="version" style="width:188px;" name="xml_path" value="<?=$_POST['xml_path']?>"><br><br>  
             <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria" value="<?=$_POST['criteria']?>"><br><br>   
             <b>Query:</b> <input style="width:188px;" id="query" name="query" value="<?=$_POST['query']?>"><br><br> 
