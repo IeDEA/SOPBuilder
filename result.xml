@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<Study name="HICDEP 1.60" version="1.60" projectID="HICDEP" noNamespaceSchemaLocation="study.xsd"><Project name="All HICPEP tables" projectID="ALL_HICDEP"><InclusionCriteria><description/><SQL><![CDATA[Select Patient from tblBAS]]></SQL></InclusionCriteria><Tablelist><Table TableName="tblBAS"/><Table TableName="tblLTFU"/></Tablelist></Project></Study>
