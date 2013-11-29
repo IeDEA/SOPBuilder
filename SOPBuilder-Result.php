@@ -4,10 +4,11 @@ include 'SOPBuilder-Functions.php';
 //print_r($_POST);
 
 $query = explode(",",$_POST['query']);
-//print_r($query);
 
 $table_array = create_array_from_xml("xml_files/".$_POST['xml_path']);
 $html_tables = create_html_tables($table_array,$selection=$query);
+$selected_variables = queryToArray($query);
+$sql = create_SQL($selected_variables);
 ?>
 
 <html>
@@ -23,6 +24,7 @@ $html_tables = create_html_tables($table_array,$selection=$query);
                 <tr><td><b>Criteria:</b></td><td><?=$_POST['criteria']?></td></tr>
                 <tr><td valign="top"><b>Description:</b></td><td><?=$_POST['description']?></td></tr>
                 <tr><td valign="top"><b>Query:</b></td><td><?=$_POST['query']?></td></tr>
+                <tr><td valign="top"><b>SQL:</b></td><td><?=$sql?></td></tr>
              </table>
              
         </div>
@@ -46,6 +48,7 @@ $html_tables = create_html_tables($table_array,$selection=$query);
             <b>Version:</b> <input id="version" style="width:188px;" name="xml_path" value="<?=$_POST['xml_path']?>"><br><br>  
             <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria" value="<?=$_POST['criteria']?>"><br><br>   
             <b>Query:</b> <input style="width:188px;" id="query" name="query" value="<?=$_POST['query']?>"><br><br> 
+            <b>SQL:</b> <input style="width:188px;" id="sql" name="sql" value="<?=$sql?>"><br><br> 
             
         </form>
         

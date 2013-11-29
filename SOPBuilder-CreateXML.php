@@ -10,6 +10,7 @@ $project_projectID = "ALL_HICDEP";
 
 // get all tables to include
 $query = explode(",",$_POST['query']);
+$sql = $_POST['sql'];
 $tables = array();
 foreach($query as $tableIvar){
     $tmp = explode("/",$tableIvar);
@@ -28,7 +29,7 @@ $project->addAttribute('name',$project_name);
 $project->addAttribute('projectID',$project_projectID);
 $inclusionCriteria = $project->addChild('InclusionCriteria');
 $inclusionCriteria->addChild('description');
-$inclusionCriteria->addChildCData('SQL','Select Patient from tblBAS');
+$inclusionCriteria->addChildCData('SQL',$sql);
 $tableList = $project->addChild('Tablelist');
 foreach($tables as $table_name){
     $table = $tableList->addChild('Table');

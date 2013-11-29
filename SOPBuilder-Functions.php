@@ -111,6 +111,28 @@ function create_filtered_table_array($table_array,$selection){
     return $selected_table_array;    
 }
 
+function queryToArray($query){
+    $selected = array();
+        foreach($query as $tableIvar){
+            $tmp = explode('/',$tableIvar);
+            $selected[$tmp[0]][] = $tmp[1];
+        }
+    return $selected;
+}
+
+function create_SQL($selected_array){
+    $sql = '';
+    foreach($selected_array as $table => $variableList){
+        $sql .= "SELECT";
+        foreach($variableList as $variable){
+            $sql .= " $variable,";
+        }
+        $sql = substr($sql,0,-1);
+        $sql .= " FROM $table; ";
+    }
+    return $sql;
+}
+
 /** 
  * 
  * Extension for SimpleXMLElement 
