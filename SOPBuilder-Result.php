@@ -21,6 +21,7 @@ $html_tables = create_html_tables($table_array,$selection=$query);
              <table>
                 <tr><td><b>Version:</b></td><td><?=$_POST['xml_path']?></td></tr>
                 <tr><td><b>Criteria:</b></td><td><?=$_POST['criteria']?></td></tr>
+                <tr><td valign="top"><b>Description:</b></td><td><?=$_POST['description']?></td></tr>
                 <tr><td valign="top"><b>Query:</b></td><td><?=$_POST['query']?></td></tr>
              </table>
              
@@ -38,12 +39,14 @@ $html_tables = create_html_tables($table_array,$selection=$query);
             <b>Version:</b> <input id="version" style="width:188px;" name="xml_path" value="<?=$_POST['xml_path']?>"><br><br>  
             <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria" value="<?=$_POST['criteria']?>"><br><br>   
             <b>Query:</b> <input style="width:188px;" id="query" name="query" value="<?=$_POST['query']?>"><br><br> 
+            <b>Description:</b> <textarea style="width:395px;height:100px;" id="description" name="description"><?=$_POST['description']?></textarea>
         </form>
         <!--Hidden XML Creator Form-->
         <form method="POST" action="SOPBuilder-CreateXML.php" id="create_xml" target="_blank" style="display:none;">
             <b>Version:</b> <input id="version" style="width:188px;" name="xml_path" value="<?=$_POST['xml_path']?>"><br><br>  
             <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria" value="<?=$_POST['criteria']?>"><br><br>   
             <b>Query:</b> <input style="width:188px;" id="query" name="query" value="<?=$_POST['query']?>"><br><br> 
+            
         </form>
         
         <?=$html_tables?>

@@ -10,7 +10,7 @@ require ("classes/FPDF/PDF.php");
 $query = explode(",",$_POST['query']);
 
 $table_array = create_array_from_xml("xml_files/".$_POST['xml_path']);
-$description_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper in purus pulvinar accumsan. Sed id massa ultrices, posuere mi vitae, feugiat dui. Nunc in lorem urna. Nulla nec cursus sem, vitae molestie enim. Duis euismod dolor non enim consectetur, vel tempus justo faucibus. Quisque porta ac ipsum vitae bibendum. Etiam convallis augue vitae arcu fermentum ullamcorper.";
+$description_text = $_POST['description'];
 $filtered_table_array = create_filtered_table_array($table_array, $query);
 
 

@@ -14,6 +14,8 @@ foreach($xml_files as $xml_file){
     $xml_file_options.="<option id='$xml_file' name='$xml_file' value='$xml_file'>$xml_file</option>";
 }
 
+
+
 ?>
 <html>
     <body>
@@ -27,9 +29,11 @@ foreach($xml_files as $xml_file){
         <div class="form_div">
             <form method="POST" action="SOPBuilder-Result.php" id="submit_query">
                 <b>Version:</b> <select id="version" style="width:188px;"><?=$xml_file_options?></select><br><br>  
-                <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria"><br><br>                
+                <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria"><br><br>       
+                <b>Description:</b> <textarea id="description" name="description" style="width:395px;height:100px;"></textarea>
                 <input id="query" type="hidden" name="query">
                 <input id="xml_path" type="hidden" name="xml_path" value=<?=$version?>>
+                
             </form>
             <div id="submit" class="btn light-grey" onClick="submit_request()">Submit</div>
             <br>
