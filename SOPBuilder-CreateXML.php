@@ -2,7 +2,7 @@
 include 'SOPBuilder-Functions.php';
 
 // temporarilly assign variables
-$study_projectID = "HICDEP";
+$study_projectID = $_POST['projectid'];
 $study_version = "1.60";
 $project_name = "All HICDEP tables";
 $project_projectID = "ALL_HICDEP";

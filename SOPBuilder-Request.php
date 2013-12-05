@@ -2,13 +2,16 @@
 
 include 'SOPBuilder-Functions.php';
 $xml_files = array_diff(scandir('xml_files'), array('..', '.'));
-//print_r($_POST);
-$version = isset($_POST['version']) ? ($_POST['version']) : $xml_files[2];
+
+if(count($_GET)>0){
+    extract($_GET);
+}else if(count($_POST)){
+    extract($_POST);
+}
 
 $table_array = create_array_from_xml("xml_files/".$version);
 $html_tables = create_html_tables($table_array,$selection=false);
 
-//print_r($xml_files);
 $xml_file_options = '';
 foreach($xml_files as $xml_file){
     $xml_file_options.="<option id='$xml_file' name='$xml_file' value='$xml_file'>$xml_file</option>";
@@ -28,9 +31,10 @@ foreach($xml_files as $xml_file){
         <center><h2>SOP Builder Request</h2></center>
         <div class="form_div">
             <form method="POST" action="SOPBuilder-Result.php" id="submit_query">
-                <b>Version:</b> <select id="version" style="width:188px;"><?=$xml_file_options?></select><br><br>  
-                <b>Criteria:</b> <input style="width:188px;" id="criteria" name="criteria"><br><br>       
-                <b>Description:</b> <textarea id="description" name="description" style="width:395px;height:100px;"></textarea>
+                <b>Project ID:</b> <input style="width:188px;" id="projectid" name="projectid" value="<?=$projectid?>"><br><br>
+                <b>Selection Scheme:</b> <select id="version" style="width:188px;"><?=$xml_file_options?></select><br><br>  
+                <b>Criteria:</b> <textarea style="width:395px;height:100px;" id="criteria" name="criteria"><?=$criteria?></textarea><br><br>       
+                <b>Description:</b> <textarea id="description" name="description" style="width:395px;height:100px;"><?=$description?></textarea>
                 <input id="query" type="hidden" name="query">
                 <input id="xml_path" type="hidden" name="xml_path" value=<?=$version?>>
                 
@@ -41,7 +45,6 @@ foreach($xml_files as $xml_file){
         </div>
         <center><br><br><br><h2 style="margin:0px;">Tables</h2></center>
         <?=$html_tables?>
-        
         
         
         
@@ -92,9 +95,15 @@ foreach($xml_files as $xml_file){
             
             $("#version").change(function(){
                 var version = $("#version").val();
+                var projectid = $("#projectid").val();
+                var criteria = $("#criteria").val();
+                var description = $("#description").val();
                 var url = 'SOPBuilder-Request.php';
                 var form = $('<form action="' + url + '" method="post">' +
                   '<input type="text" name="version" value="' + version + '" />' +
+                  '<input type="text" name="projectid" value="' + projectid + '" />' +
+                  '<input type="text" name="description" value="' + description + '" />' +
+                  '<input type="text" name="criteria" value="' + criteria + '" />' +
                   '</form>');
                 $('body').append(form);
                 $(form).submit();
