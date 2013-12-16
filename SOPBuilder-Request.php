@@ -9,6 +9,10 @@ if(count($_GET)>0){
     extract($_POST);
 }
 
+// default sql value
+if(!isset($sql))
+    $sql = "SELECT Patient from tblBAS";
+
 $table_array = create_array_from_xml("xml_files/".$version);
 $html_tables = create_html_tables($table_array,$selection=false);
 
@@ -32,12 +36,15 @@ foreach($xml_files as $xml_file){
         <div class="form_div">
             <form method="POST" action="SOPBuilder-Result.php" id="submit_query">
                 <b>Project ID:</b> <input style="width:188px;" id="projectid" name="projectid" value="<?=$projectid?>"><br><br>
+                <b>Project Name:</b> <input style="width:188px;" id="projectname" name="projectname" value="<?=$projectname?>"><br><br>
                 <b>Selection Scheme:</b> <select id="version" style="width:188px;"><?=$xml_file_options?></select><br><br>  
                 <b>Criteria:</b> <textarea style="width:395px;height:100px;" id="criteria" name="criteria"><?=$criteria?></textarea><br><br>       
-                <b>Description:</b> <textarea id="description" name="description" style="width:395px;height:100px;"><?=$description?></textarea>
+                <b>Description:</b> <textarea id="description" name="description" style="width:395px;height:100px;"><?=$description?></textarea><br><br>  
+                <a id='advanced_toggle' onclick='advanced_toggle();' style='cursor:pointer;color:blue;'>Advanced &raquo;</a><br><br>
+                <span id="advanced_sql_div" style="display:none;"><b>SQL:</b> <textarea id="sql" name="sql" style="width:395px;height:100px;"><?=$sql?></textarea><br><br></span> 
                 <input id="query" type="hidden" name="query">
                 <input id="xml_path" type="hidden" name="xml_path" value=<?=$version?>>
-                
+                                
             </form>
             <div id="submit" class="btn light-grey" onClick="submit_request()">Submit</div>
             <br>
@@ -96,18 +103,35 @@ foreach($xml_files as $xml_file){
             $("#version").change(function(){
                 var version = $("#version").val();
                 var projectid = $("#projectid").val();
+                var projectname = $("#projectname").val();
                 var criteria = $("#criteria").val();
                 var description = $("#description").val();
+                var sql = $("#sql").val();
                 var url = 'SOPBuilder-Request.php';
                 var form = $('<form action="' + url + '" method="post">' +
                   '<input type="text" name="version" value="' + version + '" />' +
                   '<input type="text" name="projectid" value="' + projectid + '" />' +
+                  '<input type="text" name="projectname" value="' + projectname + '" />' +
                   '<input type="text" name="description" value="' + description + '" />' +
                   '<input type="text" name="criteria" value="' + criteria + '" />' +
+                  '<input type="text" name="sql" value="' + sql + '" />' +
                   '</form>');
                 $('body').append(form);
                 $(form).submit();
             });
+            
+            advanced_toggle = function(){
+                if($('#advanced_toggle').html()=="Advanced &laquo;" || encodeURI($('#advanced_toggle').html())== "Advanced%20%C2%AB")
+                {
+                    $('#advanced_sql_div').hide();
+                    $('#advanced_toggle').html("Advanced &raquo;");
+                }
+                else
+                {
+                    $('#advanced_sql_div').show();
+                    $('#advanced_toggle').html("Advanced &laquo;");
+                }
+            }
 
         })(jQuery);
     });

@@ -2,15 +2,16 @@
 include 'SOPBuilder-Functions.php';
 
 // temporarilly assign variables
-$study_projectID = $_POST['projectid'];
-$study_version = "1.60";
-$project_name = "All HICDEP tables";
-$project_projectID = "ALL_HICDEP";
-
+$study_projectID = 'XX';
+$study_version = "XX";
+$study_name = "XX";
+$project_name = $_POST['projectname'];
+$project_projectID = $_POST['projectid'];
+$project_inclusioncriteria_description = $_POST['criteria'];
+$project_inclusioncriteria_sql = $_POST['sql'];
 
 // get all tables to include
 $query = explode(",",$_POST['query']);
-$sql = $_POST['sql'];
 $tables = array();
 foreach($query as $tableIvar){
     $tmp = explode("/",$tableIvar);
@@ -19,7 +20,7 @@ foreach($query as $tableIvar){
 $tables = array_values($tables);
 
 $study = new ExSimpleXMLElement('<Study></Study>');
-$study->addAttribute('name', $study_projectID." ".$study_version);
+$study->addAttribute('name', $study_name);
 $study->addAttribute('version', $study_version);
 $study->addAttribute('projectID', $study_projectID);
 $study->addAttribute('xsi:noNamespaceSchemaLocation',"study.xsd",'xsi:noNamespaceSchemaLocation');
@@ -28,8 +29,8 @@ $project = $study->addChild('Project');
 $project->addAttribute('name',$project_name);
 $project->addAttribute('projectID',$project_projectID);
 $inclusionCriteria = $project->addChild('InclusionCriteria');
-$inclusionCriteria->addChild('description');
-$inclusionCriteria->addChildCData('SQL',$sql);
+$inclusionCriteria->addChild('description',$project_inclusioncriteria_description);
+$inclusionCriteria->addChildCData('SQL',$project_inclusioncriteria_sql);
 $tableList = $project->addChild('Tablelist');
 foreach($tables as $table_name){
     $table = $tableList->addChild('Table');
