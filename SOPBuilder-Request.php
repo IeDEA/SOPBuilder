@@ -31,7 +31,15 @@ foreach($xml_files as $xml_file){
         <style type="text/css">
             @import "css/jquery.dataTables.css";
         </style>
-        
+        <div class="description_div">
+            <p>
+                Welcome to the SOPBuilder prototype. This website is a prototype under active development by the IeDEA Network Coordinating Center personnel with feedback from collaborators in other cohorts. The SOP Builder is intended to provide an automatic way to generate data requests in the HIV clinical research domain, reducing the complexity associated with communication, version control, and data element specification when using data exchange standards. You can use the point-and-click interface below to select study variables and enter the selection criteria. This will take you to a summary page with all the study details and the options to download the request as PDF (human readable SOP for sharing with colleagues) or XML (machine readable) files. The XML representations of the standards and the downloadable merger files rely on the XML representation developed for use in the HIV DDM tool by Copenhagen Hiv Programme Chip.  (http://www.hiv-ddm.net)
+            </p>
+            <p>
+                Current development is focused on the underlying technical aspects of the base functionality. In the next step we will include additional standards besides HICDEP 1.61. This can be done by uploading the corresponding formal XML definitions to the server. Please contact firas.wehbe@vanderbilt.edu if you would like to be involved or if you are interested in the use of this platform to share your cohort's data exchange standard. The code to run a copy of this application is freely available (requires PHP and web server) but at this current stage of development, please run at your own risk. 
+            </p>
+        </div>
+        <br><br>
         <center><h2>SOP Builder Request</h2></center>
         <div class="form_div">
             <form method="POST" action="SOPBuilder-Result.php" id="submit_query">

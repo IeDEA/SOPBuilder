@@ -40,6 +40,16 @@
     box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2); 
     font-size: 12px;
 }
+.description_div{
+    clear: both;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    width: 1050px;
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2); 
+    font-size: 12px;
+}
 table{
     font-size: 12px;
 }
